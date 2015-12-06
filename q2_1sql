@@ -3,17 +3,41 @@ REFERENCING NEW AS  new_input
 FOR EACH ROW 
 DECLARE
 total_marks NUMBER;
+st_id student_grades.studentid%TYPE;
 BEGIN
 total_marks:= :new_input.mid_term_marks + :new_input.assign1_marks+:new_input.assign2_marks+:new_input.end_term_marks;
 CASE 
   WHEN total_marks>=70 AND total_marks<=100 THEN
-    INSERT INTO student_grades VALUES(:new_input.studentid,total_marks,'A+');
+    SELECT studentid INTO st_id From STUDENT_GRADES WHERE studentid=:new_input.studentid;
+      IF st_id IS NOT NULL THEN
+          UPDATE student_grades SET totalmarks=total_marks, grade='A+' WHERE studentid=:new_input.studentid;
+          ELSE
+          INSERT INTO student_grades VALUES(:new_input.studentid,total_marks,'A+');
+      END IF;
   WHEN total_marks>=60 AND total_marks<70 THEN 
-    INSERT INTO student_grades VALUES(:new_input.studentid,total_marks,'A');
-  WHEN total_marks>=40 AND total_marks<60 THEN 
-    INSERT INTO student_grades VALUES(:new_input.studentid,total_marks,'B');
+  SELECT studentid INTO st_id From STUDENT_GRADES WHERE studentid=:new_input.studentid;
+      IF st_id IS NOT NULL THEN
+          UPDATE student_grades SET totalmarks=total_marks, grade='A' WHERE studentid=:new_input.studentid;
+          ELSE
+          INSERT INTO student_grades VALUES(:new_input.studentid,total_marks,'A');
+        END IF;
+    
+  WHEN total_marks>=40 AND total_marks<60 THEN
+    SELECT studentid INTO st_id From STUDENT_GRADES WHERE studentid=:new_input.studentid;
+      IF st_id IS NOT NULL THEN
+          UPDATE student_grades SET totalmarks=total_marks, grade='B' WHERE studentid=:new_input.studentid;
+          ELSE
+          INSERT INTO student_grades VALUES(:new_input.studentid,total_marks,'B');
+        END IF;
+    
   WHEN total_marks>=0 AND total_marks<40 THEN 
-    INSERT INTO student_grades VALUES(:new_input.studentid,total_marks,'C');
+  SELECT studentid INTO st_id From STUDENT_GRADES WHERE studentid=:new_input.studentid;
+      IF st_id IS NOT NULL THEN
+          UPDATE student_grades SET totalmarks=total_marks, grade='C' WHERE studentid=:new_input.studentid;
+          ELSE
+          INSERT INTO student_grades VALUES(:new_input.studentid,total_marks,'C');
+        END IF;
+    
   ELSE
     DBMS_OUTPUT.PUT_LINE('Such a mark doesnt exist');
   END CASE;

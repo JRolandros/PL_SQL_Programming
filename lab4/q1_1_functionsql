@@ -1,0 +1,10 @@
+insert into student_marks values(1158922, 15, 5, 8,34);
+insert into student_marks values(1159932, 12, 5, 7,34);
+insert into student_marks values(1251122, 12, 5, 8,26);
+insert into student_marks values(1218923, 2, 5, 9, 10);
+insert into student_marks values(1157924, 26, 9, 9,44);
+insert into student_marks values(1352935, 22, 6, 8,39);
+insert into student_marks values(1453936, 17, 7, 5,41);
+insert into student_marks values(1255672, 2, 4, 2,9);
+insert into student_marks values(1254321, 1, 3, 6,6);
+insert into student_marks values(1245015, 0, 3, 2,4); 
