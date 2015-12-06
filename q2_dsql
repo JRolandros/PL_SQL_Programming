@@ -1,6 +1,0 @@
-CREATE TRIGGER do_cal AFTER INSERT OR UPDATE ON rect_data 
-REFERENCING NEW AS my_new_input
-FOR EACH ROW
-BEGIN
-INSERT INTO rect_cal VALUES(New.side_a,NEW.side_b,3,4);
-END do_cal;
