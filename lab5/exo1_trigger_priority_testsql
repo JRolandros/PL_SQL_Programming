@@ -1,0 +1,42 @@
+/*
+It is required to determine the priority of execution of various triggers by finding the actual time of
+execution [using the PL/SQL builtconsidered
+
+Hint: this function is used after msg1 and msg1_back tables are created.
+and you don't have to compile two trigger at the same time
+Author: Roland Akamba.
+*/
+/*
+CREATE or REPLACE TRIGGER Before_Update_Stmnt_level
+BEFORE UPDATE ON msg1
+Begin
+INSERT INTO msg1_back
+Values(1, 'Before update - statement level',to_char( systimestamp,'mi:ss:FF'));
+-- you can also try: Values(1, 'Before update - statement level',to_char( systimestamp));
+END; 
+
+CREATE or REPLACE TRIGGER Before_Update_Row_level
+BEFORE UPDATE ON msg1
+FOR EACH ROW
+BEGIN
+INSERT INTO msg1_back
+Values(2,'Before update - Row level',to_char( systimestamp,'mi:ss:FF'));
+END;*/
+
+-- priority test on After triggers
+CREATE or REPLACE TRIGGER After_insert_Stmnt_level
+ AFTER INSERT ON msg1
+Begin
+INSERT INTO msg1_back
+Values(1, 'After insert - statement level',to_char( systimestamp,'mi:ss:FF'));
+-- you can also try: Values(1, 'After insert - statement level',to_char( systimestamp));
+END; 
+/*
+CREATE or REPLACE TRIGGER After_insert_Row_level
+ AFTER INSERT ON msg1
+FOR EACH ROW
+BEGIN
+INSERT INTO msg1_back
+Values(2,'After insert - Row level',to_char( systimestamp,'mi:ss:FF'));
+END;
+*/

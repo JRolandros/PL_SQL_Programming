@@ -5,11 +5,12 @@ Author: Roland Akamba.
 */
 BEGIN
 --delete from msg1; commit;
---insert into msg1 values (101, 'inserting a row');
-update msg1 set msg_num = 201 where msg_num = 101;
+insert into msg1 values (104, 'inserting a fourth row');
+--update msg1 set msg_num = 201 where msg_num = 101;
 
 END;
 
 /*
-result expected: the statment level is prior to the row level.
+result expected for before update: the statment level is prior to the row level.
+result expected for After insert: the row level is prior to the statment level.
 */
