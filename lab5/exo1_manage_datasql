@@ -1,0 +1,15 @@
+/*
+this file ised to to test the before triggers for both statment and row level
+Hint: used at first files that create tables and tiggers.
+Author: Roland Akamba.
+*/
+BEGIN
+--delete from msg1; commit;
+--insert into msg1 values (101, 'inserting a row');
+update msg1 set msg_num = 201 where msg_num = 101;
+
+END;
+
+/*
+result expected: the statment level is prior to the row level.
+*/

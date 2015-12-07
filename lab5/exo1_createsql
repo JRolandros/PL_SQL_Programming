@@ -1,0 +1,16 @@
+/*
+ thes table are used to determine the priority of various trigges execution.
+*/
+
+--msg1 
+drop table msg1;
+CREATE TABLE msg1 (
+msg_num number(4),
+Message varchar2(90));
+drop table msg1_back;
+
+--msg1_back
+CREATE TABLE msg1_back (
+msg_mum number(4),
+Message varchar2(90),
+msg_date varchar2(90));
